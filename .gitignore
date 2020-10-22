@@ -1,6 +1,5 @@
 #environment
-.env
-env.bak/
+env/
 
 # Flask stuff:
 instance/
