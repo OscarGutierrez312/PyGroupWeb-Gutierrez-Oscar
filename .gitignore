@@ -4,3 +4,6 @@ env/
 # Flask stuff:
 instance/
 .webassets-cache
+
+#cache
+app/Products/__pycache__
