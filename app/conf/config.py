@@ -18,3 +18,6 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///testdb.sqlite3'
+    DB_USERNAME = 'test'
+    DB_PASSWORD = 'test-pass'
