@@ -1,6 +1,6 @@
 
 
-def test_main_route_status_code_number3(test_client, captured_templates) -> None:
+def test_main_route_status_code_number3(test_client, captured_templates):
     route = "products/add-product"
     rv = test_client.get(route)
 

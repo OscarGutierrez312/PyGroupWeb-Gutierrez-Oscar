@@ -58,7 +58,7 @@ def category(app):
 def captured_templates(app):
     recorded = []
 
-    def record(sender, template, context):
+    def record(sender, template,context):
         recorded.append((template, context))
 
     template_rendered.connect(record, app)
