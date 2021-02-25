@@ -3,6 +3,8 @@ from app.Products.views import *
 from app.auth.views import *
 from app.index.begin import *
 from app.home.views import *
+from app.orders.views import *
+from app.users.views import *
 from app.auth.models import User
 
 from flask_login import LoginManager
@@ -12,7 +14,7 @@ from flask_migrate import Migrate
 from app.conf.config import DevelopmentConfig
 from flask_wtf.csrf import CSRFProtect
 
-ACTIVE_ENDPOINTS = [('/products', products), ('/auth', auth), ('/', begin), ('/home', home)]
+ACTIVE_ENDPOINTS = [('/products', products), ('/auth', auth), ('/', begin), ('/home', home), ('/usr', usr), ('cart', cart)]
 
 def create_app(config=DevelopmentConfig):
 
