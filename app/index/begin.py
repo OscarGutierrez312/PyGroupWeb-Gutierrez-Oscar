@@ -3,7 +3,6 @@ from flask import Blueprint, render_template, url_for, redirect, request, flash
 from app.db import db
 from app.auth.models import User
 from app.auth.views import *
-from app.home.views import *
 
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -15,4 +14,4 @@ def index():
     if (not user.is_authenticated):
         return redirect(url_for('auth.login'))
     else:
-        return redirect(url_for('home.index'))
+        print("No funcionando")
