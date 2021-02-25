@@ -5,6 +5,8 @@ from flask import Blueprint, Response, request, render_template, redirect
 from app.Products.models import *
 from app.Products.forms.Product_form import *
 
+from flask_login import login_required
+
 products=Blueprint('products', __name__, url_prefix='/products')
 
 EMPTY_SHELVE_TEXT = "Empty shelve!"
@@ -14,6 +16,7 @@ RESPONSE_BODY = {"message": "", "data": [], "errors": [], "metadata": []}
 
 
 @products.route("/categories")
+@login_required
 def get_categories():
     """
         Verificar que si get_all_categories es [] 400, message = "No hay nada"
