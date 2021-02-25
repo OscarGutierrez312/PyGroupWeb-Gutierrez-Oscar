@@ -7,7 +7,11 @@ instance/
 
 #cache
 app/Products/__pycache__
-!**/__pycache__/
+app/__pycache__
+app/auth/__pycache__
+app/conf/__pycache__
+app/home/__pycache__
+app/index/__pycache__
 
 #others
 Semana2-HTTP/
