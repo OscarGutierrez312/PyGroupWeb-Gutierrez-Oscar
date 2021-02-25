@@ -6,12 +6,22 @@ instance/
 .webassets-cache
 
 #cache
+<<<<<<< HEAD
 app/Products/__pycache__/
 app/__pycache__/
 app/auth/__pycache__/
 app/conf/__pycache__/
 app/home/__pycache__/
 app/index/__pycache__/
+=======
+app/Products/__pycache__
+app/__pycache__
+app/auth/__pycache__
+app/conf/__pycache__
+app/home/__pycache__
+app/index/__pycache__
+*/__pycache__
+>>>>>>> parent of 655d4eb (Branch Git Ignore)
 
 #others
 Semana2-HTTP/
