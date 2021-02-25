@@ -7,3 +7,7 @@ instance/
 
 #cache
 app/Products/__pycache__
+!**/__pycache__/
+
+#others
+Semana2-HTTP/

@@ -16,7 +16,6 @@ RESPONSE_BODY = {"message": "", "data": [], "errors": [], "metadata": []}
 
 
 @products.route("/categories")
-@login_required
 def get_categories():
     """
         Verificar que si get_all_categories es [] 400, message = "No hay nada"
@@ -69,14 +68,16 @@ def create_product():
 def success():
     return render_template('success.html')
 
-@products.route("/")
+@products.route("/list")
 def get_products():
+    
     products_obj = get_all_products()
 
     RESPONSE_BODY["data"] = products_obj
     RESPONSE_BODY["message"] = "Products list"
 
-    return RESPONSE_BODY, 200
+    
+    return render_template('catalogue.html', products=products_obj)
 
 
 @products.route("/product/<int:id>")

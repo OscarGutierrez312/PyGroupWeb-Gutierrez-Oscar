@@ -25,7 +25,7 @@ def login():
             return redirect(url_for("auth.login"))
 
         login_user(user, remember=remember)
-        return redirect(url_for("products.get_categories"))
+        return redirect(url_for("products"))
     return render_template("login.html")
 
 
