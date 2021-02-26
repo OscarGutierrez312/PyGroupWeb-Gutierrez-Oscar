@@ -6,7 +6,10 @@ instance/
 .webassets-cache
 
 #cache
-__pycache__/
+__pycache__ /
+*.py[cod]
+*$py.class
+*/ __pycache__ /*
+**/__pycache__/
 
-#others
-Semana2-HTTP/
+

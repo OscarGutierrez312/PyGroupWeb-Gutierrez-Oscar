@@ -14,7 +14,7 @@ from flask_migrate import Migrate
 from app.conf.config import DevelopmentConfig
 from flask_wtf.csrf import CSRFProtect
 
-ACTIVE_ENDPOINTS = [('/products', products), ('/auth', auth), ('/', begin), ('/home', home), ('/usr', usr), ('cart', cart)]
+ACTIVE_ENDPOINTS = [('/products', products), ('/auth', auth), ('/', begin), ('/home', home), ('/usr', usr), ('/cart', cart)]
 
 def create_app(config=DevelopmentConfig):
 

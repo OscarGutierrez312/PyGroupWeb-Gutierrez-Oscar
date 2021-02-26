@@ -23,7 +23,7 @@ class Product(db.Model):
 class ProductSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Product
-        fields = ["id", "name", "price"]
+        fields = ["id", "image", "name", "price"]
 
 
 class Category(db.Model):
@@ -72,8 +72,8 @@ def create_new_category(name):
 
     return None
 
-def create_new_product(name, price, color,description,category_id):
-    product=Product(name=name,  price=price, color=color,description=description, category_id=category_id)
+def create_new_product(name, image, price, color,description,category_id):
+    product=Product(name=name,  image=image, price=price, color=color,description=description, category_id=category_id)
     db.session.add(product)
 
     if db.session.commit():

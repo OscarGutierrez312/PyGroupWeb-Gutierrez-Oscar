@@ -25,7 +25,7 @@ def login():
             return redirect(url_for("auth.login"))
 
         login_user(user, remember=remember)
-        return redirect(url_for("products"))
+        return redirect(url_for("home.index"))
     return render_template("login.html")
 
 

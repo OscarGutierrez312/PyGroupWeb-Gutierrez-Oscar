@@ -4,15 +4,21 @@
 
 <div class="column is-4 is-offset-4">
     <h3 class="title" style="color:white;">Productos</h3>
-    <table border = 1>
-        {% for p in products %}
-    
-        <tr>
-           <th> {{ p }} </th>
-           
-        </tr>
-    
-        {% endfor %}
-     </table>
+
+      {% for p in products %}
+   
+         <div style="width: 100px;height: 100px;">
+
+            <tr>
+               <img src={{ p.image}} >
+               <th> {{ p.id }} </th>
+               <h2>{{ p.name }}</h2>
+               <th>{{ p.price }}</th>            
+            </tr>
+
+         </div> 
+   
+      {% endfor %}
+
 </div>
 {% endblock %}

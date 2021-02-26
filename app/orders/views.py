@@ -9,5 +9,6 @@ from flask_login import login_user, logout_user, login_required, current_user
 cart = Blueprint('cart', __name__, url_prefix='/cart')
 
 @cart.route("/MyCart", methods=["GET", "POST"])
+@login_required
 def get():
-    return render_template('user.html')
+    return render_template('cart.html')

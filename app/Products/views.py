@@ -58,7 +58,7 @@ def create_product():
     form = MyForm()
     
     if form.validate_on_submit():
-        create_new_product(form.name.data, form.price.data, form.color.data, form.description.data, form.category_id.data)
+        create_new_product(form.name.data, form.image.data, form.price.data, form.color.data, form.description.data, form.category_id.data)
 
         return redirect('/products/success')
     return render_template('product_ex.html', form=form)
