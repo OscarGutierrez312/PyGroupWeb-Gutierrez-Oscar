@@ -34,6 +34,7 @@ def add_product_to_car(user_id, product_id):
 def update_product_quantity(user_id, product_id, quantity):
     cart=Cart.query.filter_by(id_user=user_id, id_product=product_id).first()
     cart.quantity=quantity
-    if db.session.commit():
-        return cart
+    db.session.commit()
+    return cart
+    
     

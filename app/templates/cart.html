@@ -4,7 +4,7 @@
 
 <div class="column is-4 is-offset-4">
     <h3 class="title" style="color:white;">Mi carrito</h3>
-    {% for c in cart %}
+    {% for c in contx[0] %}
         <div>
             <h2>{{c.id_product}}</h2>
             <h2>{{c.quantity}}</h2>

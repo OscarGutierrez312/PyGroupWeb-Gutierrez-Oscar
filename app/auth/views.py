@@ -59,7 +59,10 @@ def signup():
         db.session.commit()
         return redirect(url_for("auth.login"))
     return render_template("signup.html")
-
+@auth.route("")
+def logged():
+    user = current_user
+    return user.is_authenticated
 
 @auth.route("/logout")
 @login_required

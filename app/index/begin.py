@@ -11,8 +11,4 @@ begin = Blueprint('', __name__, url_prefix='/')
 
 @begin.route("/")
 def index():
-    user = current_user
-    if (not user.is_authenticated):
-        return redirect(url_for('auth.login'))
-    else:
-        return redirect(url_for('home.index'))
+    return redirect(url_for('home.index'))

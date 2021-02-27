@@ -18,18 +18,34 @@
 
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
+                            
                             <a href="{{ url_for('products.get_products') }}" class="navbar-item">
                                 Home
                             </a>
-                            <a href="{{ url_for('cart.get') }}" class="navbar-item">
-                                My Cart
-                            </a>
-                            <a href="{{ url_for('usr.get') }}" class="navbar-item">
-                                User
-                            </a>
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                                Logout
-                            </a>
+                            {% if current_user.is_authenticated %}
+                                {% if (contx[1] == 2) %}
+                                    <a href="{{ url_for('admin.index') }}" class="navbar-item">
+                                        Manage
+                                    </a>
+                                {% endif %}
+                                
+                                <a href="{{ url_for('cart.get') }}" class="navbar-item">
+                                    My Cart
+                                </a>
+                                <a href="{{ url_for('usr.get') }}" class="navbar-item">
+                                    User
+                                </a>
+                                <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                    Logout
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                                    Login
+                                </a>
+                                <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                                    Sign Up
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

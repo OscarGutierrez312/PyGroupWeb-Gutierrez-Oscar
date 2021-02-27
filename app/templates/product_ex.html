@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Registration</title>
-</head>
-<body>
+{% extends "admin.html" %}
+{% block content %}
     <form method="POST" action="/products/add-product">
         {{ form.csrf_token }}   
-        {{ form.name.label }} {{ form.name(size=20) }} <br>
-        {{ form.image.label }} {{ form.image(size=20) }} <br>
-        {{ form.price.label }} {{ form.price(size=20) }}<br>
-        {{ form.color.label }} {{ form.color(size=20) }}<br>
-        {{ form.description.label }} {{ form.description(size=20) }}<br>
-        {{ form.category_id.label }} {{ form.category_id(size=20) }}<br>
+        {{ form.name.label }} {{ form.name(size=40) }} <br>
+        {{ form.image.label }} {{ form.image(size=40) }} <br>
+        {{ form.price.label }} {{ form.price(size=40) }}<br>
+        {{ form.marca.label }} {{ form.marca(size=40) }}<br>
+        {{ form.description.label }} {{ form.description(size=40) }}<br>
+        {{ form.category_id.label }} {{ form.category_id(size=40) }}<br>
         <input type="submit" value="Go">
     </form>
-</body>
-</html>
+{% endblock %}

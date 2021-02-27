@@ -12,6 +12,7 @@ usr = Blueprint('usr', __name__, url_prefix='/usr')
 @login_required
 def get():
     user=get_user_by_id(current_user.get_id())
-    return render_template('user.html', user=user)
+    role=user['role']
+    return render_template('user.html', contx=[user, role])
 
 

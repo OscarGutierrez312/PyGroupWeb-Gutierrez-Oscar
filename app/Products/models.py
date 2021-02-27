@@ -13,7 +13,7 @@ class Product(db.Model):
     name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(500), default="https://bit.ly/3loPYXP")
     price = db.Column(db.Integer, nullable=False)
-    color = db.Column(db.String(15), nullable=True)
+    marca = db.Column(db.String(30), nullable=True)
     description = db.Column(db.String(500), nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     created_at = db.Column(db.DateTime, default=datetime.now())
@@ -23,7 +23,7 @@ class Product(db.Model):
 class ProductSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Product
-        fields = ["id", "image", "name", "price"]
+        fields = ["id", "image", "name", "marca", "price"]
 
 
 class Category(db.Model):
@@ -72,8 +72,8 @@ def create_new_category(name):
 
     return None
 
-def create_new_product(name, image, price, color,description,category_id):
-    product=Product(name=name,  image=image, price=price, color=color,description=description, category_id=category_id)
+def create_new_product(name, image, price, marca, description, category_id):
+    product=Product(name=name,  image=image, price=price, marca=marca, description=description, category_id=category_id)
     db.session.add(product)
 
     if db.session.commit():
@@ -107,9 +107,7 @@ def update_stock(product_id, quantity):
     
     stock = Stock.query.filter_by(product_id=product_id).first()
     stock_schema = StockSchema()
-    p = StockSchema.dump(stock)
+    stock.quantity=quantity
+    db.session.commit()
+    return stock
     
-    if db.session.commit():
-        return p
-    return None
-

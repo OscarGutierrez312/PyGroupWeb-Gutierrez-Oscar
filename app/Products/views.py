@@ -5,7 +5,8 @@ from flask import Blueprint, Response, request, render_template, redirect
 from app.Products.models import *
 from app.Products.forms.Product_form import *
 
-from flask_login import login_required
+from app.auth.models import *
+from flask_login import login_user, logout_user, login_required, current_user
 
 products=Blueprint('products', __name__, url_prefix='/products')
 
@@ -35,7 +36,7 @@ def get_categories():
     return RESPONSE_BODY, status_code
 
 
-@products.route("/add-category", methods=["POST"])
+@products.route("/add-category", methods=("GET","POST"))
 def create_category():
     """
 
@@ -44,13 +45,11 @@ def create_category():
     RESPONSE_BODY["message"] = "Method not allowed"
     status_code = HTTPStatus.METHOD_NOT_ALLOWED
     if request.method == "POST":
-        data = request.json
-        category = create_new_category(data["name"])
-        RESPONSE_BODY["message"] = "OK. Category created!"
-        RESPONSE_BODY["data"] = category
-        status_code = HTTPStatus.CREATED
+        name=request.form.get('Name')
+        category = create_new_category(name)
+        return redirect('/products/success/'+name)
 
-    return RESPONSE_BODY, status_code
+    return render_template("category.html")
 
 @products.route("/add-product", methods=("GET","POST"))
 def create_product():
@@ -58,15 +57,15 @@ def create_product():
     form = MyForm()
     
     if form.validate_on_submit():
-        create_new_product(form.name.data, form.image.data, form.price.data, form.color.data, form.description.data, form.category_id.data)
+        create_new_product(form.name.data, form.image.data, form.price.data, form.marca.data, form.description.data, form.category_id.data)
 
-        return redirect('/products/success')
+        return redirect('/products/success/'+form.name.data)
     return render_template('product_ex.html', form=form)
 
     
-@products.route("/success")
-def success():
-    return render_template('success.html')
+@products.route("/success/<string:name>")
+def success(name):
+    return render_template('success.html', name=name)
 
 @products.route("/list")
 def get_products():
@@ -75,9 +74,12 @@ def get_products():
 
     RESPONSE_BODY["data"] = products_obj
     RESPONSE_BODY["message"] = "Products list"
-
-    
-    return render_template('catalogue.html', products=products_obj)
+    user=get_user_by_id(current_user.get_id())
+    if(user):        
+        role=user['role']   
+    else:
+        role=0
+    return render_template('catalogue.html', contx=[current_user, role, products_obj])
 
 
 @products.route("/product/<int:id>")
