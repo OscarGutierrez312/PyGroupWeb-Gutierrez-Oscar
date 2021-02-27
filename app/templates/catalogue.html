@@ -7,13 +7,14 @@
 
       {% for p in products %}
    
-         <div style="width: 100px;height: 100px;">
+         <div style="width: 300px;height: 300px;" >
 
             <tr>
-               <img src={{ p.image}} >
-               <th> {{ p.id }} </th>
-               <h2>{{ p.name }}</h2>
-               <th>{{ p.price }}</th>            
+               <img src={{ p.image}} ><br>
+               <th> {{ p.id }} </th><br>
+               <h2>{{ p.name }}</h2><br>
+               <th>{{ p.price }}</th><br>
+               <a class="button" href="{{ url_for('cart.add', id=p.id) }}">Add to Car</a>
             </tr>
 
          </div> 
@@ -21,4 +22,8 @@
       {% endfor %}
 
 </div>
+<script>
+   
+</script>
 {% endblock %}
+

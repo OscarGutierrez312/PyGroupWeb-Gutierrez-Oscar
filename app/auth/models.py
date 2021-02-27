@@ -1,4 +1,4 @@
-from app.db import db
+from app.db import db, ma
 from flask_login import UserMixin
 
 ACCESS = {
@@ -12,8 +12,19 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-    authenticated = db.Column(db.Boolean,default=False, nullable=False)
+    authenticated = db.Column(db.Boolean, default=False, nullable=False)
     role=ACCESS['user']
+
+class UserSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = User
+        fields = ["email", "name", "role", "cart"]
+
+def get_user_by_id(id):
+    user_qs = User.query.filter_by(id=id).first()
+    user_schema = UserSchema()
+    p = user_schema.dump(user_qs)
+    return p
 
 def is_admin(self):
     return self.access == ACCESS['admin']
