@@ -5,6 +5,7 @@ from app import create_app
 from app.db import create_all, db, drop_all
 from app.Products.models import Product, Category
 from .conf.config import TestingConfig
+from flask import template_rendered
 
 
 @pytest.fixture
@@ -53,3 +54,16 @@ def category(app):
         db.session.add(category)
         db.session.commit()
         return category
+
+@pytest.fixture
+def captured_templates(app):
+    recorded = []
+
+    def record(sender, template,context):
+        recorded.append((template, context))
+
+    template_rendered.connect(record, app)
+    try:
+        yield recorded
+    finally:
+        template_rendered.disconnect(record, app)

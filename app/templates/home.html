@@ -8,9 +8,11 @@
     <title>Pygroup Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+   
 </head>
 
-<body style="background: rgb(255, 255, 255)">
+<body >
     <section class="hero is-fullheight" >
 
         <div class="hero-head">
@@ -23,7 +25,7 @@
                         <div class="navbar-end">
                             
                             
-                            <a href="{{ url_for('products.get_products') }}" class="navbar-item upOptions">
+                            <a href="{{ url_for('products.get_products', id=1) }}" class="navbar-item upOptions">
                                Home
                             </a>
                             {% if current_user.is_authenticated %}
@@ -55,7 +57,44 @@
                 </div>
             </nav>
         </div>
-
+        <div class="container">
+            <div class="tabs is-centered is-boxed">
+                <ul>
+                  <li><a  href="{{ url_for('products.get_products', id=1) }}">
+                      <span class="tag is-info is-rounded is-medium ">Processors</span> 
+                    </a>
+                </li>
+                  <li><a  href="{{ url_for('products.get_products', id=2) }}">
+                    <span class="tag is-info is-rounded is-medium ">Boards</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=3) }}">
+                    <span class="tag is-info is-rounded is-medium ">Ram Memories</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=4) }}">
+                    <span class="tag is-info is-rounded is-medium ">Hard Disks</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=5) }}">
+                    <span class="tag is-info is-rounded is-medium ">Graphic Cards</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=6) }}">
+                    <span class="tag is-info is-rounded is-medium ">Cooling</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=7) }}">
+                    <span class="tag is-info is-rounded is-medium ">Power Suplies</span>  
+                    </a>
+                </li>
+                  <li><a href="{{ url_for('products.get_products', id=8) }}">
+                    <span class="tag is-info is-rounded is-medium ">Accessories</span>  
+                    </a>
+                </li>
+                </ul>
+              </div>
+        </div>
         <div class="hero-body">
             <div class="container has-text-centered">
                {% block content %}
@@ -67,5 +106,6 @@
         
     </section>
 </body>
+
 
 </html>

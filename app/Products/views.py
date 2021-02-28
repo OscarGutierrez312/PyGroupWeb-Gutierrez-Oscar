@@ -20,7 +20,16 @@ RESPONSE_BODY = {"message": "", "data": [], "errors": [], "metadata": []}
 def get_categories():
     """
         Verificar que si get_all_categories es [] 400, message = "No hay nada"
-    :return:
+        ---
+        tags:
+            - products
+        description: Allows to seee all the categories in the DB
+        responses:
+            400:
+                description: No categories found
+            200:
+                description: Ok
+        
     """
     categories = get_all_categories()
     status_code = HTTPStatus.OK
@@ -67,10 +76,10 @@ def create_product():
 def success(name):
     return render_template('success.html', name=name)
 
-@products.route("/list")
-def get_products():
+@products.route("/list/<int:id>")
+def get_products(id):
     
-    products_obj = get_all_products()
+    products_obj = get_all_products(id)
 
     RESPONSE_BODY["data"] = products_obj
     RESPONSE_BODY["message"] = "Products list"

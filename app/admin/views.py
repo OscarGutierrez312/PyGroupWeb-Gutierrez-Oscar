@@ -9,5 +9,6 @@ from flask_login import login_user, logout_user, login_required, current_user
 admin=Blueprint('admin', __name__, url_prefix='/admin')
 
 @admin.route("/")
+@login_required
 def index():
     return render_template('admin.html')

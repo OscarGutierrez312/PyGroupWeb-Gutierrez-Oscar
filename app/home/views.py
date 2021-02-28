@@ -10,5 +10,5 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route("/")
 def index():
-    return redirect(url_for('products.get_products'))
+    return redirect(url_for('products.get_products', id=1))
     

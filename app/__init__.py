@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from app.Products.views import *
 from app.auth.views import *
 from app.index.begin import *
@@ -9,6 +9,8 @@ from app.admin.views import *
 from app.auth.models import User
 
 from flask_login import LoginManager
+from flask_swagger import swagger
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from app.db import db, ma
 from flask_migrate import Migrate
@@ -22,6 +24,18 @@ ACTIVE_ENDPOINTS = [('/products', products),
                     ('/usr', usr), 
                     ('/cart', cart),
                     ('/admin', admin)]
+
+SWAGGER_URL='/swagger'
+API_URL='/spec'
+
+
+swagger_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app-name':"pygroup-webed-shop"
+    }
+)
 
 def create_app(config=DevelopmentConfig):
 
@@ -45,11 +59,23 @@ def create_app(config=DevelopmentConfig):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    @app.route("/spec")
+    def spec():
+        swag=swagger(app)
+        swag['info']['version']="1.0.0"
+        swag['info']['title']= "pygroup-webed-shop"
+        swag['info']['description']= "my shop example using flask"
+        return jsonify(swag)
+    
+    
+
     with app.app_context():
         db.create_all()
 
     for url, blueprint in ACTIVE_ENDPOINTS:
         app.register_blueprint(blueprint, url_prefix=url)
+
+    app.register_blueprint(swagger_blueprint, url_prefix=SWAGGER_URL)
 
     return app
 

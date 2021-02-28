@@ -81,8 +81,8 @@ def create_new_product(name, image, price, marca, description, category_id):
 
     return None
 
-def get_all_products():
-    products_qs = Product.query.all()
+def get_all_products(id):
+    products_qs = Product.query.filter_by(category_id=id).all()
     product_schema = ProductSchema()
     products_serialization = [product_schema.dump(product) for product in
                               products_qs]
