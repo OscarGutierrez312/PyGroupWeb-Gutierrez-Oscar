@@ -1,27 +1,67 @@
 {% extends "home.html" %}
 
 {% block content %}
+{% set colum1=namespace(value=0) %}
+{% set colum2=namespace(value=0) %}
+{% set colum3=namespace(value=0) %}
+{% set colum=namespace(value=0) %}
+<h3 class="title" style="color:rgb(65, 65, 65);">Productos</h3>
+<div class="columns is-2">
+         {% set size=namespace(value=contx[2]|length) %}
+         {% set fil=namespace(value=size.value//3) %}
+         {% set res=namespace(value=size.value%3) %}
 
-<div class="column is-4 is-offset-4">
-    <h3 class="title" style="color:white;">Productos</h3>
+         {% set colum1.value=fil.value %}
+         {% set colum2.value=fil.value %}
+         {% set colum3.value=fil.value %}
+         
+         {% if res.value == 2 %}
+            {% set colum1.value=colum1.value|int+1 %}
+            {% set colum2.value=colum2.value|int+1 %}
+         {% elif res.value == 1 %}
+            {% set colum2.value=colum2.value|int+1 %}
+         {% endif %}
 
-      {% for p in contx[2] %}
-   
-         <div style="width: 300px;height: 300px;" >
+         {% for p in contx[2] %}
 
-            <tr>
-               <img src={{ p.image}} ><br>
-               <th> {{ p.id }} </th><br>
-               <h2>{{ p.name }}</h2><br>
-               <th>{{ p.price }}</th><br>
-               <a class="button" href="{{ url_for('cart.add', id=p.id) }}">Add to Car</a>
-            </tr>
+            {% if colum.value == 0 %}  
+            <div class="column">
+            {% endif %}  
+            {% if colum1.value != 0 %}
+               {% set colum.value=colum1.value %}
+               {% set colum1.value=colum1.value|int-1 %}
+            {% elif colum2.value != 0 %}
+               {% set colum.value=colum2.value %}
+               {% set colum2.value=colum2.value|int-1 %}
+            {% elif colum3.value != 0 %}
+               {% set colum.value=colum3.value %}
+               {% set colum3.value=colum3.value|int-1 %}
+            {% endif %}
 
-         </div> 
-   
-      {% endfor %}
-
+               <div class="card" style="margin-top: 10px;">
+                  <div class="card-image is-centered">
+                     <figure class="image is-square">
+                        <img src={{ p.image}} >
+                     </figure>
+                  </div>
+                  <div class="card-content">
+                     <h2 style="font-size: 13pt;" >{{ p.name }}</h2>
+                     <h2 style="font-size: 13pt;" >{{ "$%.0f"|format(p.price) }}</h2>
+                  </div>
+                  <div class="content">
+                     <a class="button is-success is-outlined" href="{{ url_for('cart.add', id=p.id) }}" style="font-size: 20pt;">
+                        Add to Car
+                     </a>
+                  </div>            
+               </div>
+               {% set colum.value=colum.value|int-1 %}
+            {% if colum.value == 0 %} 
+            </div>              
+            {% endif %}                   
+         {% endfor %}
 </div>
+
+
 <script>
    
 </script>

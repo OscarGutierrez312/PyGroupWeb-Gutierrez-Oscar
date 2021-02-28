@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 
 <head>
     <meta charset="utf-8">
@@ -7,42 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pygroup Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
-<body>
-    <section class="hero is-fullheight" style="background: royalblue">
+<body style="background: rgb(255, 255, 255)">
+    <section class="hero is-fullheight" >
 
         <div class="hero-head">
-            <nav class="navbar">
+            <nav class="navbar is-fixed-top" style="background: rgb(0, 0, 0)">
                 <div class="container">
-
+                    <div class="navbar-menu">
+                        <h3 class="upOptions title is-2 has-text-centered">Products Catalogue</h3>
+                    </div>                    
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             
-                            <a href="{{ url_for('products.get_products') }}" class="navbar-item">
-                                Home
+                            
+                            <a href="{{ url_for('products.get_products') }}" class="navbar-item upOptions">
+                               Home
                             </a>
                             {% if current_user.is_authenticated %}
                                 {% if (contx[1] == 2) %}
-                                    <a href="{{ url_for('admin.index') }}" class="navbar-item">
+                                    <a href="{{ url_for('admin.index') }}" class="navbar-item upOptions">
                                         Manage
                                     </a>
                                 {% endif %}
                                 
-                                <a href="{{ url_for('cart.get') }}" class="navbar-item">
+                                <a href="{{ url_for('cart.get') }}" class="navbar-item upOptions">
                                     My Cart
                                 </a>
-                                <a href="{{ url_for('usr.get') }}" class="navbar-item">
+                                <a href="{{ url_for('usr.get') }}" class="navbar-item upOptions">
                                     User
                                 </a>
-                                <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                <a href="{{ url_for('auth.logout') }}" class="navbar-item upOptions">
                                     Logout
                                 </a>
                             {% else %}
-                                <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                                <a href="{{ url_for('auth.login') }}" class="navbar-item upOptions">
                                     Login
                                 </a>
-                                <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                                <a href="{{ url_for('auth.signup') }}" class="navbar-item upOptions">
                                     Sign Up
                                 </a>
                             {% endif %}
@@ -58,6 +62,9 @@
                {% endblock %}
             </div>
         </div>
+
+        
+        
     </section>
 </body>
 
