@@ -10,4 +10,15 @@ begin = Blueprint('', __name__, url_prefix='/')
 
 @begin.route("/")
 def index():
+    """
+        Redirect to Home Page
+        ---
+        tags:
+            - Index
+
+        responses:
+            200:
+                description: Home Page Without User Logged In
+        
+    """
     return redirect(url_for('home.index'))

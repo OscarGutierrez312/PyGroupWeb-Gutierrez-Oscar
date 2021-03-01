@@ -11,4 +11,15 @@ admin=Blueprint('admin', __name__, url_prefix='/admin')
 @admin.route("/")
 @login_required
 def index():
+    """
+        Get the Admin Module
+        ---
+        tags:
+            - Admin
+        
+        responses:
+            200:
+                description: Admin Module
+        
+    """
     return render_template('admin.html')

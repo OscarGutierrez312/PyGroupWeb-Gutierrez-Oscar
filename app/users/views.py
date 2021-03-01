@@ -13,6 +13,17 @@ usr = Blueprint('usr', __name__, url_prefix='/usr')
 @usr.route("/MyProfile", methods=["GET", "POST"])
 @login_required
 def get():
+    """
+        Return the Profile User Page
+        ---
+        tags:
+            - Users
+
+        responses:
+            200:
+                description: User Page
+        
+    """
     user=get_user_by_id(current_user.get_id())
     role=user['role']
     cards=get_card_by_user(current_user.get_id())
@@ -21,6 +32,17 @@ def get():
 @usr.route("/add-card", methods=["GET", "POST"])
 @login_required
 def add_card():
+    """
+        Add a card to User Payment Methods
+        ---
+        tags:
+            - Users
+
+        responses:
+            200:
+                description: Payment Method Added to User
+        
+    """
     user=get_user_by_id(current_user.get_id())
     role=user['role']
 
@@ -43,12 +65,39 @@ def add_card():
 @usr.route("/delete-card/<int:id>")
 @login_required
 def delete_card(id):
+    """
+        Delete a Card from User Payment Methods
+        ---
+        tags:
+            - Users
+        parameters:
+            - in: path
+              name: id
+              description: Id of the Card
+              required: true
+              type: integer
+
+        responses:
+            200:
+                description: Card Deleted
+        
+    """
     delete_user_card(id)
     return get()
 
 @usr.route("/pre-pay")
 @login_required
 def pre_pay():
+    """
+        Return Pre-pay Page
+        ---
+        tags:
+            - Users
+        responses:
+            200:
+                description: Pre-pay Page
+        
+    """
     user=get_user_by_id(current_user.get_id())
     role=user['role']
     cards=get_card_by_user(current_user.get_id())
@@ -57,6 +106,23 @@ def pre_pay():
 @usr.route("/pay/<int:id>")
 @login_required
 def pay(id):
+    """
+        Return the Payment Page
+        ---
+        tags:
+            - Users
+        parameters:
+            - in: path
+              name: id
+              description: Id of the Card for Pay the order
+              required: true
+              type: integer
+
+        responses:
+            200:
+                description: Pay Successful
+        
+    """
     products=[]
     subt=0
     cart=get_cart_by_user(current_user.get_id())    
@@ -75,6 +141,17 @@ def pay(id):
 @usr.route("/success")
 @login_required
 def success():
+    """
+        Successful Payment Page
+        ---
+        tags:
+            - Users
+
+        responses:
+            200:
+                description: Successful Payment
+        
+    """
     user=get_user_by_id(current_user.get_id())
     role=user['role']
     cards=get_card_by_user(current_user.get_id())

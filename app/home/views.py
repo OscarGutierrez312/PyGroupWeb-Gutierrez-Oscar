@@ -10,5 +10,16 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route("/")
 def index():
+    """
+        Redirect to Product Catalogue Page
+        ---
+        tags:
+            - Home
+
+        responses:
+            200:
+                description: Products Catalogue
+        
+    """
     return redirect(url_for('products.get_products', id=1))
     

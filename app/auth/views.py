@@ -11,6 +11,17 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    """
+        Checks if user does not exists in DB or if the password is invalid. Redirects to login and shows error if this happens.
+        ---
+        tags:
+            - Authentication
+
+        responses:
+            200:
+                description: Login Successful
+        
+    """
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
@@ -18,8 +29,7 @@ def login():
 
         user = User.query.filter_by(email=email).first()
 
-        """ Checks if user does not exists in DB or if the password is 
-        invalid. Redirects to login and shows error if this happens."""
+
         if not user or not check_password_hash(user.password, password):
             flash("Please check your login details and try again.")
             return redirect(url_for("auth.login"))
@@ -31,6 +41,17 @@ def login():
 
 @auth.route("/signup", methods=["GET", "POST"])
 def signup():
+    """
+        If user exists shows an error and redirects to signup to try with other user.
+        ---
+        tags:
+            - Authentication
+
+        responses:
+            200:
+                description: Sign Up Successful
+        
+    """
     if request.method == "POST":
         email = request.form.get("email")
         name = request.form.get("name")
@@ -40,15 +61,12 @@ def signup():
             email=email
         ).first()
 
-        """If user exists shows an error and redirects to signup to try
-        with other user.
-        """
 
         if user:
             flash("Email address already exists")
             return redirect(url_for("auth.signup"))
 
-        """Creates new user in DB with hashed password for security reasons"""
+
         new_user = User(
             email=email,
             name=name,
@@ -59,14 +77,38 @@ def signup():
         db.session.commit()
         return redirect(url_for("auth.login"))
     return render_template("signup.html")
+
 @auth.route("")
 def logged():
+    """
+        Verify if a user is logged in the Application
+        ---
+        tags:
+            - Authentication
+
+        responses:
+            description:
+              schema:
+                type: boolean
+        
+    """
     user = current_user
     return user.is_authenticated
 
 @auth.route("/logout")
 @login_required
 def logout():
+    """
+        Log Out the Current User.
+        ---
+        tags:
+            - Authentication
+
+        responses:
+            200:
+                description: Log Out Successful
+        
+    """
     user = current_user
     user.authenticated = False
     db.session.add(user)

@@ -3,10 +3,20 @@
 
 * Oscar Camilo Gutierrez
 * Estudiante de Ingeniería de Sistemas
------------------------------------------------------------------
 
-|          | Definición                                                                                                                                                                                                                                                                                                                                                        | Diferencias                                                                                                                                                                                                                                                   |
-|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OAuth2.0 | Consiste en delegar la autenticación de usuario  al servicio que gestiona las cuentas, de modo que  sea éste quien otorgue el acceso para las  aplicaciones de terceros.                                                                                                                                                                                          | OAuth 2.0 es para autorización y OpenID Connect es para autenticación.                                                                                                                                                                                        |
-| OpenID   | Open ID es un sistema de autenticación digital descentralizado,  con el que un usuario puede identificarse en una página web a  través de una URL (o un XRI en la versión actual) y puede ser  verificado por cualquier servidor que soporte el protocolo.                                                                                                        | OpenID es también es un sistema de gestión de sus datos, de forma que al  autentificarte en un sitio web te preguntará que datos quieres compartir  con este sitio donde te vas a registrar.                                                                  |
-| SAML     | El Lenguaje de marcado para confirmaciones de seguridad  (SAML, por sus siglas en inglés) es un estándar abierto  que permite que las credenciales de seguridad sean compartidas  por múltiples computadoras a través de una red. Describe un marco  que permite que una computadora realice algunas funciones de seguridad  en nombre de otra o más computadoras | OAuth es un estándar un poco más nuevo que SAML, desarrollado  conjuntamente por Google y Twitter a partir del 2006. Fue desarrollado,  en parte, para compensar las deficiencias de SAML en las plataformas móviles,  y está basado en JSON en lugar de XML. |
+### Proyecto Final
+
+Tienda de partes de computador:
+
+* La aplicacion contiene 2 usuarios uno administrados con el tendra una pestaña adicional "Manage", para crear productos y categorias, y otro usuario el cual no tiene el rol de administrador para realizar los anteriores cambios
+
+Usuario administrador: 
+* email:oscargutierrez1102@gmail.com
+* password: 978645312
+
+Usuario Normal:
+* email:oscarsb2014@hotmail.com
+* password: 654321
+
+
+

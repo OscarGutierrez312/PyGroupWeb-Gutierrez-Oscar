@@ -33,7 +33,7 @@ swagger_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
     config={
-        'app-name':"pygroup-webed-shop"
+        'app-name':"PyGroup-Webed-Shop"
     }
 )
 
@@ -63,8 +63,8 @@ def create_app(config=DevelopmentConfig):
     def spec():
         swag=swagger(app)
         swag['info']['version']="1.0.0"
-        swag['info']['title']= "pygroup-webed-shop"
-        swag['info']['description']= "my shop example using flask"
+        swag['info']['title']= "PyGroup-Webed-Shop"
+        swag['info']['description']= "Pc Components Shop Using Flask"
         return jsonify(swag)
     
     
