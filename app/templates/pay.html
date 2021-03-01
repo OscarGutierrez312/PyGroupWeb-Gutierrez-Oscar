@@ -1,0 +1,73 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="box">
+    <div class="container is-fluid ">                
+            <div class="columns is-vcentered">
+                                
+                <div class="column">
+                    <p>
+                        <strong>{{contx[0].n_tit}}</strong>
+                    </p>
+                </div>
+                <div class="column">
+                    <strong>Card Type</strong><br>
+                    <small>{{contx[0].c_type}}</small>
+                    
+                </div>
+                <div class="column">
+                    <strong>Card Mark</strong><br>
+                    <small>{{contx[0].mark}}</small>
+                </div>
+            </div>
+        
+    </div>
+</div> 
+{% for n in contx[2] %}
+{% set c=contx[4][loop.index-1] %}
+{% set p=contx[2][loop.index-1] %}
+
+
+<div class="box">
+    <div class="container is-fluid ">                
+            <div class="columns is-vcentered">
+                
+                <div class="column">
+                                        
+                    <figure class="image is-64x64">
+                        <img src={{p.image}} >
+                    </figure>
+                     
+                </div>
+                <div class="column">
+                    <p>
+                        <strong>{{p.name}}</strong>
+                    </p>
+                </div>
+                <div class="column">
+                    <strong>Quantity</strong>
+                    <h2>{{c.quantity}}</h2>
+                </div>
+                <div class="column">
+                    <strong>Price</strong><br>
+                    <small>{{"${:,.0f}".format(p.price)}}</small>
+                </div>
+            </div>
+        
+    </div>
+</div>        
+        
+{% endfor %}
+
+{% set s=namespace(value=contx[3]) %}
+{% set i=namespace(value=s.value*0.19) %}
+{% set t=namespace(value=s.value+i.value) %}
+<div class="box">
+<strong>Subtotal: </strong><small>{{"${:,.0f}".format(s.value)}}</small><br>
+<strong>Iva: </strong><small>{{"${:,.0f}".format(i.value)}}</small><br>
+<strong>Total: </strong><small>{{"${:,.0f}".format(t.value)}}</small><br>
+<a class="button is-success" style="margin-top: 70px;" href="{{url_for('usr.success')}}">Pay</a>
+</div>
+
+{% endblock %}

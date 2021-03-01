@@ -6,7 +6,7 @@ from app.home.views import *
 from app.orders.views import *
 from app.users.views import *
 from app.admin.views import *
-from app.auth.models import User
+from app.users.models import User
 
 from flask_login import LoginManager
 from flask_swagger import swagger

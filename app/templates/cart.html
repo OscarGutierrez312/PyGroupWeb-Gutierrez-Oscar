@@ -2,13 +2,75 @@
 
 {% block content %}
 
-<div class="column is-4 is-offset-4">
-    <h3 class="title" style="color:white;">Mi carrito</h3>
-    {% for c in contx[0] %}
-        <div>
-            <h2>{{c.id_product}}</h2>
-            <h2>{{c.quantity}}</h2>
+<form method="POST" action="{{ url_for('cart.add_in_car') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <div class="field">
+        <div class="control">
+            <input class="input is-large" type="text" name="product_id" placeholder="Product ID" autocomplete="off">
         </div>
-    {% endfor %}
-</div>
+    </div>
+    <button class="button is-block is-warning is-large is-fullwidth" >Add to Car</button>
+</form>
+
+
+    <h3 class="title" style="color:rgb(0, 0, 0);margin-top: 30px;">My Cart</h3>
+
+    <div class="columns">
+        <div class="column is-two-thirds">
+
+            {% for n in contx[0] %}
+            {% set c=contx[0][loop.index-1] %}
+            {% set p=contx[2][loop.index-1] %}
+
+            
+            <div class="box">
+                <div class="container is-fluid ">                
+                        <div class="columns is-vcentered">
+                            <div class="column ">
+                                <a type="button" href="{{url_for('cart.delete',id=p.id)}}">
+                                    <figure class="image is-32x32">
+                                        <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" >
+                                    </figure>
+                                </a>
+                                
+                            </div>
+                            <div class="column">
+                                                    
+                                <figure class="image is-64x64">
+                                    <img src={{p.image}} >
+                                </figure>
+                                 
+                            </div>
+                            <div class="column">
+                                <p>
+                                    <strong>{{p.name}}</strong>
+                                </p>
+                            </div>
+                            <div class="column">
+                                <strong>Quantity</strong>
+                                <h2>{{c.quantity}}</h2>
+                            </div>
+                            <div class="column">
+                                <strong>Price</strong><br>
+                                <small>{{"${:,.0f}".format(p.price)}}</small>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>        
+                    
+        {% endfor %}
+        </div>
+        {% set s=namespace(value=contx[3]) %}
+        {% set i=namespace(value=s.value*0.19) %}
+        {% set t=namespace(value=s.value+i.value) %}
+        <div class="box">
+            <strong>Subtotal: </strong><small>{{"${:,.0f}".format(s.value)}}</small><br>
+            <strong>Iva: </strong><small>{{"${:,.0f}".format(i.value)}}</small><br>
+            <strong>Total: </strong><small>{{"${:,.0f}".format(t.value)}}</small><br>
+            <a class="button is-success" style="margin-top: 70px;" href="{{url_for('usr.pre_pay')}}">Pay</a>
+        </div>
+    </div>
+    
+
 {% endblock %}

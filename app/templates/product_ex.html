@@ -1,13 +1,45 @@
 {% extends "admin.html" %}
 {% block content %}
+<div class="box">
     <form method="POST" action="/products/add-product">
         {{ form.csrf_token }}   
-        {{ form.name.label }} {{ form.name(size=40) }} <br>
-        {{ form.image.label }} {{ form.image(size=40) }} <br>
-        {{ form.price.label }} {{ form.price(size=40) }}<br>
-        {{ form.marca.label }} {{ form.marca(size=40) }}<br>
-        {{ form.description.label }} {{ form.description(size=40) }}<br>
-        {{ form.category_id.label }} {{ form.category_id(size=40) }}<br>
-        <input type="submit" value="Go">
+        <div class="field">
+            <div class="control">
+                {{ form.name.label(class_="title") }} {{ form.name(class_="input is-large") }}
+            </div>
+        </div>
+         
+        <div class="field">
+            <div class="control">
+                {{ form.image.label(class_="title") }} {{ form.image(class_="input is-large") }}
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                {{ form.price.label(class_="title") }} {{ form.price(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.marca.label(class_="title") }} {{ form.marca(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.description.label(class_="title") }} {{ form.description(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.category_id.label(class_="title") }} {{ form.category_id(class_="input is-large") }}
+            </div>
+        </div>
+
+
+         
+        <input class="button is-success is-fullwidth" type="submit" value="Create">
     </form>
+</div>
+    
 {% endblock %}

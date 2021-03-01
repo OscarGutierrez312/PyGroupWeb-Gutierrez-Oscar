@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, request, flash
 
 from app.db import db
-from app.auth.models import User
 from app.auth.views import *
 from app.home.views import *
 

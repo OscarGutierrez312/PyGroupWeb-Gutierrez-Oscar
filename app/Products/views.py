@@ -5,7 +5,7 @@ from flask import Blueprint, Response, request, render_template, redirect
 from app.Products.models import *
 from app.Products.forms.Product_form import *
 
-from app.auth.models import *
+from app.users.models import *
 from flask_login import login_user, logout_user, login_required, current_user
 
 products=Blueprint('products', __name__, url_prefix='/products')
@@ -96,7 +96,7 @@ def get_product(id):
     product = get_product_by_id(id)
 
     RESPONSE_BODY["data"] = product
-    return RESPONSE_BODY, 200
+    return product, 200
 
 
 @products.route("/product-stock/<int:product_id>")

@@ -10,18 +10,29 @@
 </head>
 
 <body>
-    <section class="hero is-fullheight" style="background: royalblue">
+    <section class="hero is-fullheight" style="background: rgb(255, 255, 255)">
 
         <div class="hero-head">
-            <nav class="navbar">
+            
                 <div class="container">
-                    <h1>Administrator Control</h1>
-                    <a class="button" href="{{ url_for('products.create_product') }}">Create Product</a>
-
-                    <a class="button" href="{{ url_for('products.create_category') }}">Create Category</a>
+                    <div class="box">
+                        <h1 class="title is-centered">Administrator Control</h1>
+                    </div>
+                    <div class="box">
+                        <a class="button is-warning is-fullwidth" href="{{ url_for('home.index') }}">Back to Home</a>
                  
+                    </div>
+                    <div class="box">
+                        <a class="button is-warning is-fullwidth" href="{{ url_for('products.create_product') }}">Create Product</a>
+
+                    </div>
+                    <div class="box">
+                        <a class="button is-warning is-fullwidth" href="{{ url_for('products.create_category') }}">Create Category</a>
+                 
+                    </div>
+
                 </div>
-            </nav>
+            
         </div>
 
         <div class="hero-body">

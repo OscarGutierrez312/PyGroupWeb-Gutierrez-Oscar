@@ -37,4 +37,7 @@ def update_product_quantity(user_id, product_id, quantity):
     db.session.commit()
     return cart
     
+def delete_car_product(id):
+    Cart.query.filter_by(id_product=id).delete()
+    db.session.commit()
     

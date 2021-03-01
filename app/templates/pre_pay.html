@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<h1 class="title">Select A Payment Option</h1>
+
+{% for c in contx[0] %}
+
+<div class="box">
+    <div class="container is-fluid ">                
+            <div class="columns is-vcentered">
+                <div class="column ">
+                    <a type="button" href="{{url_for('usr.pay', id=c.id)}}">
+                        <figure class="image is-32x32">
+                            <img src="https://image.flaticon.com/icons/png/512/126/126233.png" >
+                        </figure>
+                    </a>
+                    
+                </div>
+                
+                <div class="column">
+                    <p>
+                        <strong>{{c.n_tit}}</strong>
+                    </p>
+                </div>
+                <div class="column">
+                    <strong>Card Type</strong><br>
+                    <small>{{c.c_type}}</small>
+                    
+                </div>
+                <div class="column">
+                    <strong>Price</strong><br>
+                    <small>{{c.mark}}</small>
+                </div>
+            </div>
+        
+    </div>
+</div> 
+
+
+{% endfor %}
+
+
+{% endblock %}
