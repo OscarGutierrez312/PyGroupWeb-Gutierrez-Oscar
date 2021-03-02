@@ -6,4 +6,10 @@ instance/
 .webassets-cache
 
 #cache
-app/Products/__pycache__
+__pycache__ /
+*.py[cod]
+*$py.class
+*/ __pycache__ /*
+**/__pycache__/
+
+

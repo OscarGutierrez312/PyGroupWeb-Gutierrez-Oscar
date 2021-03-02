@@ -1,0 +1,16 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="box">
+        <form method="POST" action="/products/add-category">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="Name" name="Name" placeholder="Enter Name" autocomplete="off" autofocus="">
+                </div>
+            </div>
+    
+            <button class="button is-block is-warning is-large is-fullwidth">Create</button>
+        </form>
+    </div>
+    
+{% endblock %}

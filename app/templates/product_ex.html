@@ -1,19 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Registration</title>
-</head>
-<body>
+{% extends "admin.html" %}
+{% block content %}
+<div class="box">
     <form method="POST" action="/products/add-product">
         {{ form.csrf_token }}   
-        {{ form.name.label }} {{ form.name(size=20) }} <br>
-        {{ form.price.label }} {{ form.price(size=20) }}<br>
-        {{ form.color.label }} {{ form.color(size=20) }}<br>
-        {{ form.description.label }} {{ form.description(size=20) }}<br>
-        {{ form.category_id.label }} {{ form.category_id(size=20) }}<br>
-        <input type="submit" value="Go">
+        <div class="field">
+            <div class="control">
+                {{ form.name.label(class_="title") }} {{ form.name(class_="input is-large") }}
+            </div>
+        </div>
+         
+        <div class="field">
+            <div class="control">
+                {{ form.image.label(class_="title") }} {{ form.image(class_="input is-large") }}
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                {{ form.price.label(class_="title") }} {{ form.price(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.marca.label(class_="title") }} {{ form.marca(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.description.label(class_="title") }} {{ form.description(class_="input is-large") }}
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                {{ form.category_id.label(class_="title") }} {{ form.category_id(class_="input is-large") }}
+            </div>
+        </div>
+
+
+         
+        <input class="button is-success is-fullwidth" type="submit" value="Create">
     </form>
-</body>
-</html>
+</div>
+    
+{% endblock %}

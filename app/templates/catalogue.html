@@ -1,0 +1,109 @@
+{% extends "home.html" %}
+
+{% block content %}
+{% set colum1=namespace(value=0) %}
+{% set colum2=namespace(value=0) %}
+{% set colum3=namespace(value=0) %}
+{% set colum=namespace(value=0) %}
+<h3 class="title" style="color:rgb(65, 65, 65);">Categories</h3>
+<div class="container">
+   <div class="tabs is-centered is-boxed">
+       <ul>
+         <li><a  href="{{ url_for('products.get_products', id=1) }}">
+             <span class="tag is-info is-rounded is-medium ">Processors</span> 
+           </a>
+       </li>
+         <li><a  href="{{ url_for('products.get_products', id=2) }}">
+           <span class="tag is-info is-rounded is-medium ">Boards</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=3) }}">
+           <span class="tag is-info is-rounded is-medium ">Ram Memories</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=4) }}">
+           <span class="tag is-info is-rounded is-medium ">Hard Disks</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=5) }}">
+           <span class="tag is-info is-rounded is-medium ">Graphic Cards</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=6) }}">
+           <span class="tag is-info is-rounded is-medium ">Cooling</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=7) }}">
+           <span class="tag is-info is-rounded is-medium ">Power Supplies</span>  
+           </a>
+       </li>
+         <li><a href="{{ url_for('products.get_products', id=8) }}">
+           <span class="tag is-info is-rounded is-medium ">Accessories</span>  
+           </a>
+       </li>
+       </ul>
+     </div>
+</div>
+<div class="columns is-2">
+         {% set size=namespace(value=contx[2]|length) %}
+         {% set fil=namespace(value=size.value//3) %}
+         {% set res=namespace(value=size.value%3) %}
+
+         {% set colum1.value=fil.value %}
+         {% set colum2.value=fil.value %}
+         {% set colum3.value=fil.value %}
+         
+         {% if res.value == 2 %}
+            {% set colum1.value=colum1.value|int+1 %}
+            {% set colum2.value=colum2.value|int+1 %}
+         {% elif res.value == 1 %}
+            {% set colum2.value=colum2.value|int+1 %}
+         {% endif %}
+
+         {% for p in contx[2] %}
+
+            {% if colum.value == 0 %}  
+            <div class="column">
+            {% endif %}  
+            {% if colum1.value != 0 %}
+               {% set colum.value=colum1.value %}
+               {% set colum1.value=colum1.value|int-1 %}
+            {% elif colum2.value != 0 %}
+               {% set colum.value=colum2.value %}
+               {% set colum2.value=colum2.value|int-1 %}
+            {% elif colum3.value != 0 %}
+               {% set colum.value=colum3.value %}
+               {% set colum3.value=colum3.value|int-1 %}
+            {% endif %}
+
+               <div class="card has-background-dark has-text-light" style="margin-top: 30px;">
+                  <h3>Product ID: {{p.id}}</h3>
+                  <div class="card-image is-centered">
+                     <figure class="image is-square ">
+                        <img src={{ p.image}} >
+                     </figure>
+                  </div>
+                  <div class="card-content">
+                     <h2 style="font-size: 13pt;" >{{ p.name }}</h2>
+                     <h2 style="font-size: 13pt;" >Mark: {{ p.marca }}</h2>
+                     <h2 style="font-size: 13pt;" >{{ "${:,.0f}".format(p.price) }}</h2>
+                  </div>
+                  <div class="content">
+                     <a class="button is-success is-outlined" href="{{ url_for('cart.add', id=p.id) }}" style="font-size: 20pt; margin-bottom: 10px;">
+                        Add to Car
+                     </a>
+                  </div>            
+               </div>
+               {% set colum.value=colum.value|int-1 %}
+            {% if colum.value == 0 %} 
+            </div>              
+            {% endif %}                   
+         {% endfor %}
+</div>
+
+
+<script>
+   
+</script>
+{% endblock %}
+
